@@ -1,5 +1,7 @@
 @extends('templates.master')
 
+@section('title-view', 'Dashboard')
+
 @section('css-view')
 
 @endsection
