@@ -5,7 +5,7 @@
 @endsection
 
 @section('content-view')
-    @include('user.index')
+    dashboard
 @endsection
 
 @section('js-view')
