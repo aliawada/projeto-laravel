@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
     <div class="container">
-    <a class="navbar-brand" href="{{ route('user.dashboard') }}">
+    <a class="navbar-brand" href="{{ route('users.dashboard') }}">
             <img src="{{ asset('images/logo.png') }}" alt="">
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"

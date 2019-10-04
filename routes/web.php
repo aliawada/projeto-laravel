@@ -17,8 +17,8 @@ Route::get('/signup', ['uses' => 'Controller@signup']);
 
 // Routes to user auth
 Route::get('/login', ['uses' => 'Controller@login']);
-Route::post('/login', ['as' => 'user.login', 'uses' => 'DashboardController@auth']);
-Route::get('/dashboard', ['as' => 'user.dashboard', 'uses' => 'DashboardController@index']);
+Route::post('/login', ['as' => 'users.login', 'uses' => 'DashboardController@auth']);
+Route::get('/dashboard', ['as' => 'users.dashboard', 'uses' => 'DashboardController@index']);
 
 // Route::get('user', ['as' => 'user.index', 'uses' => 'UsersController@index']);
 

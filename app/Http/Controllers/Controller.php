@@ -21,7 +21,7 @@ class Controller extends BaseController
 
     //method to user login view
     public function login() {
-        return view('user.login');
+        return view('users.login');
     }
 
 }

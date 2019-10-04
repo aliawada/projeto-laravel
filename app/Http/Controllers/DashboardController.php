@@ -22,7 +22,7 @@ class DashboardController extends Controller
 
     public function index()
     {
-       return view('user.dashboard');
+       return view('users.dashboard');
     }
 
     public function auth(Request $request)
@@ -51,7 +51,7 @@ class DashboardController extends Controller
                 Auth::login($user);
             }
 
-            return redirect()->route('user.dashboard');
+            return redirect()->route('users.dashboard');
         } catch (Exception $ex) {
             return $ex->getMessage();
         }

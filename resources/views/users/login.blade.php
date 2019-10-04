@@ -17,7 +17,7 @@
     <section id="conteudo-view" class="login">
         <h1>Login</h1>
 
-        {!! Form::open(['route' => 'user.login', 'method' => 'post']) !!}
+        {!! Form::open(['route' => 'users.login', 'method' => 'post']) !!}
         <p>Acesse o sistema</p>
         <label>
             {!! Form::text('email', null, ['class' => 'input', 'placeholder' => 'Usuário']) !!}
