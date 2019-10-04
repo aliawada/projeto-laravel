@@ -12,14 +12,20 @@ class Group extends Model implements Transformable
 {
     use TransformableTrait;
 
-    protected $fillable = ['name','user_id','instituition_id'];
+    protected $fillable = ['name', 'user_id', 'instituition_id'];
 
-    public function owner() {
+    public function owner()
+    {
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function instituition() {
-        return $this->belongsTo(Instituition::class);
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'user_groups');
     }
 
+    public function instituition()
+    {
+        return $this->belongsTo(Instituition::class);
+    }
 }

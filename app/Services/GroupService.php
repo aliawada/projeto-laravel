@@ -67,4 +67,28 @@ class  GroupService
             }
         }
     }
+
+    public function userStore($data, $group_id)
+    {
+        try {
+            $group = $this->repository->find($group_id);
+            $user_id = $data['user_id'];
+
+            $group->users()->attach($user_id);
+
+            return [
+                'success' => true,
+                'message' => "Usuário relacionado com sucesso",
+                'data' => $group
+            ];
+        } catch(Exception $ex) {
+
+            switch(\get_class($ex)) {
+                case QueryException::class      : return ['success' => false, 'message' => $ex->getMessage()];
+                case ValidatorException::class  : return ['success' => false, 'message' => $ex->getMessageBag()];
+                case Exception::class           : return ['success' => false, 'message' => $ex->getMessage()];
+                default                         : return ['success' => false, 'message' => $ex->getMessage()];
+            }
+        }
+    }
 }
