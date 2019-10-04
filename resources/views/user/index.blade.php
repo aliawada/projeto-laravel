@@ -35,6 +35,7 @@
             <th scope="col">password</th>
             <th scope="col">status</th>
             <th scope="col">permission</th>
+            <th scope="col">menu</th>
           </tr>
         </thead>
         <tbody>
@@ -51,6 +52,13 @@
             <td>{{ $user->password }}</td>
             <td>{{ $user->status }}</td>
             <td>{{ $user->permission }}</td>
+            <td>
+              {!! Form::open(['route' => ['user.destroy', $user->id], 'method' => 'DELETE']) !!}
+
+              {!! Form::submit('remover') !!}
+
+              {!! Form::close() !!}
+            </td>
           </tr>
         @endforeach
         </tbody>

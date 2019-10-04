@@ -13,10 +13,10 @@
                 <a class="nav-link" href="{{ route('user.index') }}">Usuário</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Instituições</a>
+                    <a class="nav-link" href="{{ route('instituition.index') }}">Instituições</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Grupos</a>
+                    <a class="nav-link" href="{{ route('group.index') }}">Grupos</a>
                 </li>
             </ul>
         </div>

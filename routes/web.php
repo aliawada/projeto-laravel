@@ -12,8 +12,8 @@
 */
 
 Route::get('/', ['uses' => 'Controller@homepage']);
-Route::get('/signup', ['uses' => 'Controller@signup']);
 
+Route::get('/signup', ['uses' => 'Controller@signup']);
 
 // Routes to user auth
 Route::get('/login', ['uses' => 'Controller@login']);
@@ -23,3 +23,9 @@ Route::get('/dashboard', ['as' => 'user.dashboard', 'uses' => 'DashboardControll
 // Route::get('user', ['as' => 'user.index', 'uses' => 'UsersController@index']);
 
 Route::resource('user', 'UsersController');
+
+//Routes to Instituition
+Route::resource('instituition', 'InstituitionsController');
+
+//Routes to Group
+Route::resource('group', 'GroupsController');
