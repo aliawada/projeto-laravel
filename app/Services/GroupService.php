@@ -2,19 +2,19 @@
 
 namespace App\Services;
 
-use App\Repositories\InstituitionRepository;
-use App\Validators\InstituitionValidator;
+use App\Repositories\GroupRepository;
+use App\Validators\GroupValidator;
 use Prettus\Validator\Contracts\ValidatorInterface;
 use Exception;
 use Illuminate\Database\QueryException;
 use Prettus\Validator\Exceptions\ValidatorException;
 
-class  InstituitionsService
+class  GroupService
 {
     private $repository;
     private $validator;
 
-    public function __construct(InstituitionRepository $repository, InstituitionValidator $validator)
+    public function __construct(GroupRepository $repository, GroupValidator $validator)
     {
         $this->repository = $repository;
         $this->validator = $validator;
@@ -25,12 +25,12 @@ class  InstituitionsService
         try {
             $this->validator->with($data)->passesOrFail(ValidatorInterface::RULE_CREATE);
 
-            $instituition = $this->repository->create($data);
+            $group = $this->repository->create($data);
 
             return [
                 'success' => true,
-                'message' => "Instituição cadastrada",
-                'data' => $instituition
+                'message' => "Grupo cadastrado",
+                'data' => $group
             ];
         } catch(Exception $ex) {
 
@@ -46,15 +46,15 @@ class  InstituitionsService
     public function update()
     { }
 
-    public function delete($instituition_id)
+    public function delete($group_id)
     {
         try {
 
-            $this->repository->delete($instituition_id);
+            $this->repository->delete($group_id);
 
             return [
                 'success' => true,
-                'message' => "Instituição deletada",
+                'message' => "Grupo deletado",
                 'data' => null
             ];
         } catch(Exception $ex) {

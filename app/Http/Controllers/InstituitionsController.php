@@ -10,7 +10,7 @@ use Prettus\Validator\Exceptions\ValidatorException;
 use App\Http\Requests\InstituitionCreateRequest;
 use App\Http\Requests\InstituitionUpdateRequest;
 use App\Repositories\InstituitionRepository;
-use App\Services\InstituitionsService;
+use App\Services\InstituitionService;
 use App\Validators\InstituitionValidator;
 
 /**
@@ -24,7 +24,7 @@ class InstituitionsController extends Controller
     protected $repository;
     protected $service;
 
-    public function __construct(InstituitionRepository $repository, InstituitionsService $service)
+    public function __construct(InstituitionRepository $repository, InstituitionService $service)
     {
         $this->repository = $repository;
         $this->service  = $service;
@@ -155,16 +155,13 @@ class InstituitionsController extends Controller
      */
     public function destroy($id)
     {
-        $deleted = $this->repository->delete($id);
+        $request = $this->service->delete($id);
 
-        if (request()->wantsJson()) {
+        session()->flash('success', [
+            'success' => $request['success'],
+            'message' => $request['message']
+        ]);
 
-            return response()->json([
-                'message' => 'Instituition deleted.',
-                'deleted' => $deleted,
-            ]);
-        }
-
-        return redirect()->back()->with('message', 'Instituition deleted.');
+        return redirect()->route('instituition.index');
     }
 }
