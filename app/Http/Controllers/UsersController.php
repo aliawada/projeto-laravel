@@ -56,19 +56,14 @@ class UsersController extends Controller
     {
         $request = $this->service->store($request->all());
 
-        $usuario = $request['success'] ? $request['data'] : null ;
+        // $usuario = $request['success'] ? $request['data'] : null ;
 
         session()->flash('success', [
             'success' => $request['success'],
             'message' => $request['message']
         ]);
 
-        $users = $this->repository->all();
-
-        return view('user.index', [
-            'usuario' => $usuario,
-            'users' => $users,
-        ]);
+        return redirect()->route('user.index');
     }
 
     /**

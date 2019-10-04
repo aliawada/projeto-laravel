@@ -1,6 +1,6 @@
 @extends('templates.master')
 
-@section('title-view', 'Usuário')
+@section('title-view', 'Users')
 
 @section('css-view')
 
