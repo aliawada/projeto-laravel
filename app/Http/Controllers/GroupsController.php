@@ -116,8 +116,14 @@ class GroupsController extends Controller
     public function edit($id)
     {
         $group = $this->repository->find($id);
+        $user_list = $this->userRepository->selectBoxList('name', 'id');
+        $intituition_list = $this->instituitionRepository->selectBoxList('name', 'id');
 
-        return view('groups.edit', compact('group'));
+        return view('groups.edit', [
+            'group' => $group,
+            'user_list' => $user_list,
+            'instituition_list' => $intituition_list
+        ]);
     }
 
     /**
@@ -132,35 +138,16 @@ class GroupsController extends Controller
      */
     public function update(GroupUpdateRequest $request, $id)
     {
-        try {
+        $request = $this->service->update($request->all(), $id);
 
-            $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_UPDATE);
+        // $usuario = $request['success'] ? $request['data'] : null ;
 
-            $group = $this->repository->update($request->all(), $id);
+        session()->flash('success', [
+            'success' => $request['success'],
+            'message' => $request['message']
+        ]);
 
-            $response = [
-                'message' => 'Group updated.',
-                'data'    => $group->toArray(),
-            ];
-
-            if ($request->wantsJson()) {
-
-                return response()->json($response);
-            }
-
-            return redirect()->back()->with('message', $response['message']);
-        } catch (ValidatorException $e) {
-
-            if ($request->wantsJson()) {
-
-                return response()->json([
-                    'error'   => true,
-                    'message' => $e->getMessageBag()
-                ]);
-            }
-
-            return redirect()->back()->withErrors($e->getMessageBag())->withInput();
-        }
+        return redirect()->route('group.index');
     }
 
 

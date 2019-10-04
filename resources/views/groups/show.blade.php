@@ -36,7 +36,7 @@
 
 <h4>Pessoas relacionadas com este grupo </h4>
 
-@include('user.list', ['user_list' => $group->users])
+@include('users.list', ['user_list' => $group->users])
 
 
 @endsection

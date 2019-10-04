@@ -43,8 +43,28 @@ class  GroupService
         }
     }
 
-    public function update()
-    { }
+    public function update($data, $id)
+    {
+        try {
+            $this->validator->with($data)->passesOrFail(ValidatorInterface::RULE_UPDATE);
+
+            $group = $this->repository->update($data, $id);
+
+            return [
+                'success' => true,
+                'message' => "Grupo atualizado",
+                'data' => $group
+            ];
+        } catch(Exception $ex) {
+
+            switch(\get_class($ex)) {
+                case QueryException::class      : return ['success' => false, 'message' => $ex->getMessage()];
+                case ValidatorException::class  : return ['success' => false, 'message' => $ex->getMessageBag()];
+                case Exception::class           : return ['success' => false, 'message' => $ex->getMessage()];
+                default                         : return ['success' => false, 'message' => $ex->getMessage()];
+            }
+        }
+    }
 
     public function delete($group_id)
     {
