@@ -68,11 +68,11 @@ class  ProductService
         }
     }
 
-    public function delete($instituition_id)
+    public function delete($product_id)
     {
         try {
 
-            $this->repository->delete($instituition_id);
+            $this->repository->delete($product_id);
 
             return [
                 'success' => true,

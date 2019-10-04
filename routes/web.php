@@ -33,3 +33,6 @@ Route::post('group/{group_id}/user', ['as' => 'group.user.store', 'uses' => 'Gro
 
 //Routes to Product
 Route::resource('instituition.product', 'ProductsController');
+
+//Routes to Movement
+Route::get('movement', ['as' => 'movement.application', 'uses' => 'MovementsController@application']);

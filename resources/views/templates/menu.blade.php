@@ -18,6 +18,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('group.index') }}">Grupos</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('movement.application') }}">Investir</a>
+                </li>
             </ul>
         </div>
     </div>
