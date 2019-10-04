@@ -38,6 +38,7 @@
 
                 {!! Form::close() !!}
                 <a href="{{ route('instituition.show', $instituition->id) }}">Detalhes</a>
+                <a href="{{ route('instituition.edit', $instituition->id) }}">Editar</a>
             </td>
         </tr>
         @endforeach
