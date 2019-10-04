@@ -15,12 +15,19 @@ class Instituition extends Model implements Transformable
 {
     use TransformableTrait;
 
+
+    public $timestamps  = true;
+    protected $table    = 'instituitions';
     protected $fillable = ['name'];
-    public $timestamps = true;
 
     public function groups()
     {
         return $this->hasMany(Group::class);
+    }
+
+    public function products()
+    {
+        return $this->hasMany(Product::class);
     }
 
 }
