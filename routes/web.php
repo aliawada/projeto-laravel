@@ -11,6 +11,15 @@
 |
 */
 
+//Routes to Movement
+Route::get('movement', ['as' => 'movement.application', 'uses' => 'MovementsController@application']);
+Route::post('movement', ['as' => 'movement.application.store', 'uses' => 'MovementsController@storeApplication']);
+Route::get('user/movement', ['as' => 'movement.index', 'uses' => 'MovementsController@index']); // ambiguidade nesta rota por isso movi pra cima
+Route::get('movement/all', ['as' => 'movement.all', 'uses' => 'MovementsController@all']);
+Route::get('withdraw', ['as' => 'movement.withdraw', 'uses' => 'MovementsController@withdraw']);
+Route::post('withdraw', ['as' => 'movement.withdraw.store', 'uses' => 'MovementsController@storeWithdraw']);
+
+
 Route::get('/', ['uses' => 'Controller@homepage']);
 
 Route::get('/signup', ['uses' => 'Controller@signup']);
@@ -34,6 +43,3 @@ Route::post('group/{group_id}/user', ['as' => 'group.user.store', 'uses' => 'Gro
 //Routes to Product
 Route::resource('instituition.product', 'ProductsController');
 
-//Routes to Movement
-Route::get('movement', ['as' => 'movement.application', 'uses' => 'MovementsController@application']);
-Route::post('movement', ['as' => 'movement.application.store', 'uses' => 'MovementsController@storeApplication']);

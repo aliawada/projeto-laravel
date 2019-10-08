@@ -75,4 +75,51 @@ class MovementsController extends Controller
         return redirect()->route('movement.application');
     }
 
+    public function index()
+    {
+        return view('movement.index', [
+            'product_list' => Product::all(),
+        ]);
+    }
+
+    public function all()
+    {
+        $movement_list = Auth::user()->movements;
+
+        return view('movement.all', [
+            'movement_list' => $movement_list,
+        ]);
+    }
+
+    public function withdraw()
+    {
+        $user = Auth::user();
+
+        $group_list = $user->groups->pluck('name', 'id');
+        $product_list = Product::all()->pluck('name', 'id');
+
+        return view('movement.withdraw', [
+            'group_list' => $group_list,
+            'product_list' => $product_list
+        ]);
+    }
+
+    public function storeWithdraw(Request $request)
+    {
+        $movimento = Movement::create([
+            'user_id'       => Auth::user()->id,
+            'group_id'      => $request->get('group_id'),
+            'product_id'    => $request->get('product_id'),
+            'value'         => $request->get('value'),
+            'type'          => 2,
+        ]);
+
+        session()->flash('success', [
+            'success' => true,
+            'message' => "Seu resgate de ". $movimento->value . " no produto " . $movimento->product->name ." foi realizada com sucesso!",
+        ]);
+
+        return redirect()->route('movement.application');
+    }
+
 }

@@ -21,6 +21,15 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('movement.application') }}">Investir</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('movement.withdraw') }}">Resgatar</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('movement.index') }}">Aplicações</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('movement.all') }}">Extrato</a>
+                </li>
             </ul>
         </div>
     </div>
