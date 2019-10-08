@@ -36,3 +36,4 @@ Route::resource('instituition.product', 'ProductsController');
 
 //Routes to Movement
 Route::get('movement', ['as' => 'movement.application', 'uses' => 'MovementsController@application']);
+Route::post('movement', ['as' => 'movement.application.store', 'uses' => 'MovementsController@storeApplication']);

@@ -11,6 +11,8 @@ use App\Http\Requests\MovementCreateRequest;
 use App\Http\Requests\MovementUpdateRequest;
 use App\Repositories\MovementRepository;
 use App\Validators\MovementValidator;
+use App\Entities\{Group, Product, Movement};
+use Auth;
 
 /**
  * Class MovementsController.
@@ -44,7 +46,33 @@ class MovementsController extends Controller
 
     public function application()
     {
-        return view('movement.application');
+        $user = Auth::user();
+
+        $group_list = $user->groups->pluck('name', 'id');
+        $product_list = Product::all()->pluck('name', 'id');
+
+        return view('movement.application', [
+            'group_list' => $group_list,
+            'product_list' => $product_list
+        ]);
+    }
+
+    public function storeApplication(Request $request)
+    {
+        $movimento = Movement::create([
+            'user_id'       => Auth::user()->id,
+            'group_id'      => $request->get('group_id'),
+            'product_id'    => $request->get('product_id'),
+            'value'         => $request->get('value'),
+            'type'          => 1,
+        ]);
+
+        session()->flash('success', [
+            'success' => true,
+            'message' => "Sua aplicação de ". $movimento->value . " no produto " . $movimento->product->name ." foi realizada com sucesso!",
+        ]);
+
+        return redirect()->route('movement.application');
     }
 
 }

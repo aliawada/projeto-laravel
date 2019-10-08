@@ -5,6 +5,7 @@
             <th scope="col">Nome do Grupo</th>
             <th scope="col">Nome do Responsável</th>
             <th scope="col">Instituição</th>
+            <th scope="col">Total</th>
             <th scope="col">menu</th>
         </tr>
     </thead>
@@ -15,6 +16,7 @@
             <td>{{ $group->name }}</td>
             <td>{{ $group->owner->name }}</td>
             <td>{{ $group->instituition->name }}</td>
+            <td>R$ {{ number_format($group->total_value, 2, ',', '.') }}</td>
             <td>
                 {!! Form::open(['route' => ['group.destroy', $group->id], 'method' => 'DELETE']) !!}
 
@@ -22,8 +24,8 @@
 
                 {!! Form::close() !!}
 
-                <a href="{{ route('group.show', $group->id)}}">Detalhes</a>
-                <a href="{{ route('group.edit', $group->id)}}">Editar</a>
+                <a class="btn btn-primary" href="{{ route('group.show', $group->id)}}">Detalhes</a>
+                <a class="btn btn-primary" href="{{ route('group.edit', $group->id)}}">Editar</a>
             </td>
         </tr>
         @endforeach

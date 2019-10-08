@@ -35,7 +35,7 @@
                 {!! Form::submit('remover') !!}
 
                 {!! Form::close() !!}
-                <a href="{{ route('user.edit', $user->id) }}">Editar</a>
+                <a class="btn btn-primary" href="{{ route('user.edit', $user->id) }}">Editar</a>
             </td>
         </tr>
         @endforeach
