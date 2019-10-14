@@ -58,4 +58,10 @@ class DashboardController extends Controller
 
         // dd($request->all()); //dump and die
     }
+
+    public function logout()
+    {
+        Auth::logout();
+        return redirect()->route('login');
+    }
 }
